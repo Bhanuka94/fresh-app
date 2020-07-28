@@ -43,7 +43,19 @@ let rendererConfig = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["vue-style-loader", "css-loader", "sass-loader"],
+        use: [
+          "vue-style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              data: `
+            @import "@/scss/_variables.scss";
+            @import "@/scss/_mixins.scss";
+            `,
+            },
+          },
+        ],
       },
       {
         test: /\.sass$/,
